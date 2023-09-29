@@ -4,8 +4,11 @@ import one.digitalinovation.laboojava.basedados.Banco;
 import one.digitalinovation.laboojava.entidade.Pedido;
 import one.digitalinovation.laboojava.entidade.Livro;
 import one.digitalinovation.laboojava.entidade.Produto;
+import one.digitalinovation.laboojava.entidade.Caderno;
+import one.digitalinovation.laboojava.entidade.Cliente;
 import one.digitalinovation.laboojava.entidade.Cupom;
 import one.digitalinovation.laboojava.entidade.constantes.Genero;
+import one.digitalinovation.laboojava.entidade.constantes.Materias;
 import one.digitalinovation.laboojava.negocio.ProdutoNegocio;
 
 import java.util.Optional;
@@ -36,6 +39,22 @@ public final class LeitoraDados {
 		
 		return texto;
 	}
+	
+	//ler os dados do cliente a ser cadastrado
+	public static Cliente lerCliente() {
+		System.out.println("Cadastrando cliente...");
+		Cliente cliente = new Cliente();
+		
+		System.out.println("Digite o nome: ");
+		String nome = lerDado();
+		cliente.setNome(nome);
+		
+		System.out.println("Digite o cpf: ");
+		String cpf = lerDado();
+		cliente.setCpf(cpf);
+		
+		return cliente;
+	}
 
 	/**
 	 * Ler os dados do livro a ser cadastrado.
@@ -46,7 +65,7 @@ public final class LeitoraDados {
 		System.out.println("Cadastrando livro...");
 		Livro livro = new Livro();
 
-		System.out.println("Digite o nome");
+		System.out.println("Digite o nome: ");
 		String nome = lerDado();
 		livro.setNome(nome);
 
@@ -66,6 +85,21 @@ public final class LeitoraDados {
 	 * @return Um caderno a partir dos dados de entrada
 	 */
 	//TODO Método para ler o caderno
+	public static Caderno lerCaderno() {
+
+		System.out.println("Cadastrando caderno...");
+		Caderno caderno = new Caderno();
+
+		System.out.println("Digite o tipo: M2, M5, M10");
+		String tipo = lerDado();
+		caderno.setTipo(Materias.valueOf(tipo.toUpperCase()));
+
+		System.out.println("Digite o preço(padrão 0.0)");
+		String preco = lerDado();
+		caderno.setPreco(Double.parseDouble(preco));
+
+		return caderno;
+	}
 
 	/**
 	 * Ler os dados do pedido e retorna um objeto a partir destes.

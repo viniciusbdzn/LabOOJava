@@ -55,6 +55,22 @@ public class ProdutoNegocio {
      */
     public void excluir(String codigo) {
         //TODO Implementar a exclusão
+    	int produtoExclusao = -1;
+        for (int i = 0; i < bancoDados.getProdutos().length; i++) {
+
+            Produto produto = bancoDados.getProdutos()[i];
+            if (produto.getCodigo().equals(codigo)) {
+                produtoExclusao = i;
+                break;
+            }
+        }
+
+        if (produtoExclusao != -1) {
+            bancoDados.removerProduto(produtoExclusao);
+            System.out.println("Produto excluído com sucesso.");
+        } else {
+            System.out.println("Produto inexistente.");
+        }
     }
 
     /**

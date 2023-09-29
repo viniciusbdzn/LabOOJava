@@ -46,6 +46,7 @@ public class Start {
             }
 
             System.out.println("Selecione uma opção:");
+            System.out.println("0 - Cadastrar Cliente");
             System.out.println("1 - Cadastrar Livro");
             System.out.println("2 - Excluir Livro");
             //TODO Desafio: Consultar Livro(nome)
@@ -63,20 +64,29 @@ public class Start {
             opcao = LeitoraDados.lerDado();
 
             switch (opcao) {
+            	case "0":
+            		Cliente cliente = LeitoraDados.lerCliente();
+            		clienteNegocio.cadastrarCliente(cliente);
+            		break;
                 case "1":
                     Livro livro = LeitoraDados.lerLivro();
                     produtoNegocio.salvar(livro);
                     break;
                 case "2":
-                    System.out.println("Digite o código do livro");
+                    System.out.println("Digite o código do livro:");
                     String codigoLivro = LeitoraDados.lerDado();
                     produtoNegocio.excluir(codigoLivro);
                     break;
                 case "3":
                     //TODO Cadastrar Caderno
-                    break;
+                	Caderno caderno = LeitoraDados.lerCaderno();
+                	produtoNegocio.salvar(caderno);
+                	break;
                 case "4":
                     //TODO Excluir Caderno
+                	System.out.println("Digite o código do caderno:");
+                    String codigoCaderno = LeitoraDados.lerDado();
+                    produtoNegocio.excluir(codigoCaderno);
                     break;
                 case "5":
                     Pedido pedido = LeitoraDados.lerPedido(banco);
@@ -98,6 +108,7 @@ public class Start {
                     break;
                 case "8":
                     //TODO Listar todos os Pedidos
+                	pedidoNegocio.listarTodos();
                     break;
                 case "9":
                     System.out.println(String.format("Volte sempre %s!", clienteLogado.getNome()));
@@ -129,7 +140,8 @@ public class Start {
             clienteLogado = cliente;
         } else {
             System.out.println("Usuário não cadastrado.");
-            System.exit(0);
+            System.out.println("Deseja se cadastrar? ");
+            
         }
     }
 }
